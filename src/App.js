@@ -11,13 +11,19 @@ function App() {
   ])
  
   const crateatePost = (newPost) => {
-    setpost(...post, newPost)
+    setpost([...post, newPost])
   }
-  
-  return (
+
+  const removePost = (post) => {
+    setpost(post.filter((p) => p.id !== post.id
+    ))
+
+    console.log(post.id)
+  }
+   return (
     <div className="App">
       <FormPost  create = {crateatePost}/>
-      <PostList post = {post}  title = "список постов1"/>
+      <PostList remove = {removePost} post = {post}  title = "список постов1"/>
     </div>
   );
 }
