@@ -1,31 +1,48 @@
-import React, { useState } from 'react';
-import PostList from './postList';
-import './style/App.css';
-import FormPost from './companent/FormPost';
+import Cost from "./components/Costs/cost";
+import NewCost from "./components/NewCost/NewCost";
+import React, { useState } from "react";
+
+const INITIAL_COST = [
+  {
+    id: 'c1',
+    data: new Date("2022, 2, 12"),
+    descr:'холодильник',
+    amout:999.9 
+  },
+  {
+    id: 'c2',
+    data: new Date("2022, 2, 12"),
+    descr:'х',
+    amout:99.9 
+  },
+  {
+    id: 'c3',
+    data: new Date("2023, 2, 12"),
+    descr:'холод',
+    amout:9.9 
+  },
+]
 
 function App() {
-  const [post, setpost] = useState([
-    {id: 1, title: 'jvascript', discr: 'javascripr - это узык программирования'},
-    {id: 2, title: 'jvascript2', discr: 'javascripr - это узык программирования2'},
-    {id: 3, title: 'jvascript3', discr: 'javascripr - это узык программирования3'}
-  ])
- 
-  const crateatePost = (newPost) => {
-    setpost([...post, newPost])
+  const [cost, setCost] = useState(INITIAL_COST)
+  
+
+
+  const addCostHandler = (cost) => {
+    setCost(prevCost => {
+      return [...cost, prevCost]
+    })
+      
+    
   }
 
-  const removePost = (post) => {
-    setpost(post.filter((p) => p.id !== post.id
-    ))
-
-    console.log(post.id)
-  }
-   return (
-    <div className="App">
-      <FormPost  create = {crateatePost}/>
-      <PostList remove = {removePost} post = {post}  title = "список постов1"/>
+  return (
+    <div>
+      <NewCost onAddCost = {addCostHandler}></NewCost>
+      <Cost cost = {cost}></Cost>
     </div>
   );
 }
 
 export default App;
+
