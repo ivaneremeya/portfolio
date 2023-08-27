@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-
+// import React { useMemo } from "react"
 
 export const  useSortedPost = (posts, sort) => {
     const SortedPost =  useMemo(() => {
-        // console.log('отработала')
+        console.log('отработала')
         if(sort) {
           return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]))
         }
